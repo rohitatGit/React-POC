@@ -11,7 +11,16 @@
     border-radius: 10px;
 }
 
+.react-datepicker-wrapper {
+    display: block !important;
+}
 
 #uName {
     max-width: 500px;  
+}
+
+
+#dobDatePicker{
+    margin-left: 15px;
+    width: 440px;
 }

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './navbar.css';
+import {NavLink} from 'react-router-dom'
 
 class MenuExample extends Component {
 
@@ -30,6 +31,7 @@ class MenuExample extends Component {
                 })}
                 </ul>
                 <p>Selected: {items[this.state.focused]}</p>
+                <NavLink to = '/reactForm'>React Form </NavLink>
             </div>
         );
 

@@ -2,9 +2,13 @@ import React, { Component } from 'react';
 import {
   Container, Col, Form,
   FormGroup, Label, Input,
-  Button, FormText, FormFeedback,
+  Button, FormText, FormFeedback, CustomInput
 } from 'reactstrap';
 import './react-form.css';
+import DatePicker from "react-datepicker";
+import moment from 'moment';
+import 'react-datepicker/dist/react-datepicker.css';
+
 
 class reactform extends Component {
   constructor(props) {
@@ -17,7 +21,10 @@ class reactform extends Component {
         emailState: '',
       },
     }
+    this.displayValue = {};
     this.handleChange = this.handleChange.bind(this);
+    this.handleChangeDate = this.handleChangeDate.bind(this);
+    const today = new Date();
   }
 
   validateEmail(e) {
@@ -45,78 +52,122 @@ class reactform extends Component {
       // this.state = 'disabled'
       return true;
     } else {
-      console.log(this.state)
       return false;
     }
   }
   submitForm(e) {
     e.preventDefault();
-    console.log(`Email: ${this.state.email}`)
-    console.log(`UserName: ${this.state.uName}`)
+    this.displayValue['Email'] = this.state.email;
+    this.displayValue['UserName'] = this.state.uName;
+    console.log(this.displayValue)
+  }
+
+  handleChangeDate(date) {
+    this.setState({
+      startDate: date
+    });
   }
 
   render() {
     const { uName, email, password } = this.state;
     return (
       <div>
-      <Container className="reactform">
-        <h2>Sign In</h2>
-        <Form className="form" onSubmit={(e) => this.submitForm(e)}>
-        
-          <Col>
-            <FormGroup>
-              <Label>Your Name</Label>
-              <Input
-                type="text"
-                name="uName"
-                id="uName"
-                placeholder="Enter First Name"
-                value={uName}
-                onChange={(e) => this.handleChange(e)}
-              />
-            </FormGroup>
-          </Col>
+        <Container className="reactform">
+          <h4>Registeration Form</h4>
+          <Form className="form" onSubmit={(e) => this.submitForm(e)}>
 
-          <Col>
-            <FormGroup>
-              <Label>Email</Label>
-              <Input
-                type="email"
-                name="email"
-                id="exampleEmail"
-                placeholder="myemail@email.com"
-                value={email}
-                valid={this.state.validate.emailState === 'has-success'}
-                invalid={this.state.validate.emailState === 'has-danger'}
-                onChange={(e) => {
-                  this.validateEmail(e)
-                  this.handleChange(e)
-                }}
-              />
-              <FormFeedback valid>
-                Looking Nice....
+            <Col>
+              <FormGroup>
+                <Label>Your Name</Label>
+                <Input
+                  type="text"
+                  name="uName"
+                  id="uName"
+                  placeholder="Enter First Name"
+                  value={uName}
+                  onChange={(e) => this.handleChange(e)}
+                />
+              </FormGroup>
+            </Col>
+
+            <Col>
+              <FormGroup>
+                <Label>Email</Label>
+                <Input
+                  type="email"
+                  name="email"
+                  id="exampleEmail"
+                  placeholder="myemail@email.com"
+                  value={email}
+                  valid={this.state.validate.emailState === 'has-success'}
+                  invalid={this.state.validate.emailState === 'has-danger'}
+                  onChange={(e) => {
+                    this.validateEmail(e)
+                    this.handleChange(e)
+                  }}
+                />
+                <FormFeedback valid>
+                  Looking Nice....
               </FormFeedback>
-              <FormFeedback>
-                Please Enter the valid Email....
+                <FormFeedback>
+                  Please Enter the valid Email....
               </FormFeedback>
-            </FormGroup>
-          </Col>
-          <Col>
-            <FormGroup>
-              <Label for="examplePassword">Password</Label>
-              <Input
-                type="password"
-                name="password"
-                id="examplePassword"
-                placeholder="********"
-                value={password}
-                onChange={(e) => this.handleChange(e)}
+              </FormGroup>
+            </Col>
+            <Col>
+              <FormGroup>
+                <Label for="examplePassword">Password</Label>
+                <Input
+                  type="password"
+                  name="password"
+                  id="examplePassword"
+                  placeholder="********"
+                  value={password}
+                  onChange={(e) => this.handleChange(e)}
+                />
+              </FormGroup>
+            </Col>
+
+            {/* <Col>
+          <FormGroup>
+              <Label for="DateOfBirth">Date Of Birth</Label>
+              <DatePicker
+                  selected={this.state.startDate}
+                  onChange={this.handleChangeDate}
+                  
               />
             </FormGroup>
-          </Col>
-          <Button disabled= {this.disableTheButton()}>Submit</Button>
-        </Form>
-      </Container>
+          </Col> */}
+            <FormGroup id='dobDatePicker'>
+              <Label for="exampleDate">Date</Label>
+              <Input
+                type="date"
+                name="date"
+                id="exampleDate"
+                placeholder="date placeholder"
+              />
+            </FormGroup>
+
+            <Col>
+              <FormGroup>
+                <Label for="exampleCheckbox">Gender: </Label>
+                <div>
+                  <CustomInput type="radio" id="exampleCustomRadio" name="customRadio" label="Male" />
+                  <CustomInput type="radio" id="exampleCustomRadio2" name="customRadio" label="Female" />
+                </div>
+              </FormGroup>
+
+            </Col>
+
+            <FormGroup check>
+              <Label check>
+                <Input type="checkbox" /> Accept the terms and conditions.
+              </Label>
+            </FormGroup>
+
+            <Button disabled={this.disableTheButton()}>Submit</Button>
+          </Form>
+        </Container>
       </div>
     );
   }
