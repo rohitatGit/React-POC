@@ -1,0 +1,17 @@
+/* .formDiv {
+    padding: 10px;
+    background-color: aliceblue;
+    width: 500px
+} */
+
+.reactform {
+    max-width: 500px !important;
+    background-color: #56afab38;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+
+#uName {
+    max-width: 500px;  
+}
