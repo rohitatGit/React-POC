@@ -14,7 +14,8 @@ class App extends Component {
         <MenuExample />
           <Switch>
             <Route exact path="/" component={home} />
-            <Route path="/reactform" component={reactForm} />
+            <Route exact path="/home" component={home} />
+            <Route path="/React-Form" component={reactForm} />
             <Route component={error} />
           </Switch>
         </div>

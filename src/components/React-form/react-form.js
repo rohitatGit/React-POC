@@ -5,13 +5,12 @@ import {
   Button, FormText, FormFeedback, CustomInput
 } from 'reactstrap';
 import './react-form.css';
-import DatePicker from "react-datepicker";
-import moment from 'moment';
 import 'react-datepicker/dist/react-datepicker.css';
 
 
 class reactform extends Component {
   constructor(props) {
+    console.time();
     super(props);
     this.state = {
       'uName': '',
@@ -25,6 +24,7 @@ class reactform extends Component {
     this.handleChange = this.handleChange.bind(this);
     this.handleChangeDate = this.handleChangeDate.bind(this);
     const today = new Date();
+    console.timeEnd();
   }
 
   validateEmail(e) {
@@ -127,17 +127,6 @@ class reactform extends Component {
                 />
               </FormGroup>
             </Col>
-
-            {/* <Col>
-          <FormGroup>
-              <Label for="DateOfBirth">Date Of Birth</Label>
-              <DatePicker
-                  selected={this.state.startDate}
-                  onChange={this.handleChangeDate}
-                  
-              />
-            </FormGroup>
-          </Col> */}
             <FormGroup id='dobDatePicker'>
               <Label for="exampleDate">Date</Label>
               <Input
