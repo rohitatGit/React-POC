@@ -1,0 +1,26 @@
+.thumnail-img {
+    width: 150px;
+}
+
+.youtube-layout {
+    display: flex;
+    flex-flow: row wrap;
+    .search_header {
+        flex: 1 100%;
+        padding: 10px;
+        background-color: #f6f6f6;
+        border-radius: 0 0 5px 5px;
+    }
+    .search_details{ flex: 2}
+    .search_thumbnails {
+        flex: 1;
+        .media {
+            border-bottom: 1px solid #c0c0c0;
+            padding: 10px 0;
+            margin: 0 10px;
+            &:first-child {
+                padding-top: 0;
+            }
+        }
+    }
+}
