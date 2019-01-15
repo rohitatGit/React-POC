@@ -4,7 +4,7 @@ import {
   FormGroup, Label, Input,
   Button, FormText, FormFeedback, CustomInput
 } from 'reactstrap';
-import './react-form.css';
+import './react-form.scss';
 import 'react-datepicker/dist/react-datepicker.css';
 
 
